@@ -20,8 +20,6 @@ def test_login(page : Page):
 
     login_page.load()
    
-   # --- LAYER 1: NEGATIVE AUTHENTICATION CHECKS ---
-    # We use a list to iterate through your "empty" scenarios first
     empty_scenarios = [
         ("", "", "Epic sadface: Username is required"),
         ("", "secret_sauce", "Epic sadface: Username is required"),
@@ -30,13 +28,13 @@ def test_login(page : Page):
 
     for user, pwd, error in empty_scenarios:
         login_page.Login(user, pwd)
-        # Check that the error message is correct
+       
         error_msg = page.locator("[data-test='error']")
         expect(error_msg).to_contain_text(error)
-        # Refresh or reload to clear the error for the next attempt
+        
         page.reload()
     
-    # --- LAYER 2: VALID LOGIN ---
+    
     login_page.Login("standard_user", "secret_sauce")
     expect(inventory.title_header).to_have_text("Products")
     inventory.add_backpack_to_cart()
@@ -55,7 +53,7 @@ def test_login(page : Page):
 
     
 
-# This decorator runs the function 3 times with different data
+
 
 
 
