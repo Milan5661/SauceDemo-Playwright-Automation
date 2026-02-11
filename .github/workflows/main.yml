@@ -1,0 +1,9 @@
+name: QA-Intern-Practice
+on: [push] # This triggers the action every time you save a change
+
+jobs:
+  greet:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Say Hello
+        run: echo "The QA automation is running successfully!"
